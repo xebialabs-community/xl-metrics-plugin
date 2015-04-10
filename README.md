@@ -19,11 +19,10 @@ This plugin creates a new endpoint in your XL Release or XL Deploy server which 
 
 For XL Release we have an utility script which gets the metrics for you.
 
-1. Download the Python script [`get_xl_release_metrics.py`](src/scripts/get_xl_release_metrics.py).
-2. Run it like this:
+1. Download the Python script [`get_xl_release_metrics.py`](scripts/get_xl_release_metrics.py).
+2. Run it like this, assuming that XL Release is running at http://localhost:5516/my-xlrelease/:
 
-
-    python get_xl_release_metrics.py http://localhost:5516/my-xlrelease/
+    `python get_xl_release_metrics.py http://localhost:5516/my-xlrelease/`
     
 It will ask you for admin password, start generating the metrics, wait until they are ready and print the result into standard output.
 
