@@ -13,7 +13,7 @@ def get_metrics(xl_release_url, password):
         raise BaseException("Could not start calculating metrics:\n%s" % response)
 
     while True:
-        print 'Metrics are being calculated, waiting for completion...'
+        print >> sys.stderr, 'Metrics are being calculated, waiting for completion...'
         time.sleep(10)
         response = do_request(metrics_url, password)
         if json.loads(response)['status'] != 'in_progress':
@@ -41,5 +41,5 @@ if __name__ == "__main__":
         admin_password = getpass.getpass("Please enter the password of XL Release 'admin' user: ")
 
     metrics = get_metrics(xlr_url, admin_password)
-    print "Finished calculating the metrics:"
+    print >> sys.stderr, "Finished calculating the metrics:"
     print metrics

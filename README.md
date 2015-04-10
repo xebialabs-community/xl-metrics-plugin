@@ -5,7 +5,7 @@ This plugin creates a new endpoint in your XL Release or XL Deploy server which 
 ## Requirements
 
 * XL Release 4.6.0 or higher.
-* XL Deploy 5.0.0 (including betas) or higher.
+* XL Deploy 5.0.0 or higher.
 
 ## How to install it
 
