@@ -5,33 +5,33 @@
  */
 package com.xebialabs.xlplatform.metrics
 
-import akka.actor.{Actor, Props}
-import akka.pattern.ask
+import akka.actor.{ActorSystem, Actor, Props}
 import akka.util.Timeout
-import com.xebialabs.xlplatform.endpoints.AuthenticatedData
+import akka.pattern.ask
+import com.xebialabs.xlplatform.endpoints.{AuthenticatedData, ExtensionRoutes}
 import spray.http.StatusCodes.BadRequest
-import spray.routing.HttpService
+import spray.routing.Route
 
 import scala.concurrent._
 import scala.concurrent.duration._
+import scala.util.{Failure, Success}
 
 case object MetricsRequest
 case class MetricsSuccess(metrics: Metrics)
 case class MetricsFailure(error: Throwable)
 
-trait MetricsRoute extends HttpService {
+class MetricsRoute extends ExtensionRoutes {
 
-  val metricsActor = actorRefFactory.actorOf(MetricsActor.props)
-
-  val route = (auth: AuthenticatedData) =>
-    path("xl-metrics") {
+  override def route(system: ActorSystem): (AuthenticatedData) => Route = {
+    val metricsActor = system.actorOf(MetricsActor.props)
+    (auth: AuthenticatedData) => path("xl-metrics") {
       rejectNonAdmin(auth) {
         get {
           import com.xebialabs.xlplatform.metrics.MetricsProtocol._
           import spray.httpx.SprayJsonSupport._
 
           implicit val timeout = Timeout(10.seconds)
-          implicit val dispatcher = actorRefFactory.dispatcher
+          implicit val dispatcher = system.dispatcher
 
           onSuccess(metricsActor.ask(MetricsRequest).mapTo[Result]) {
             case metricsInError: MetricsInError => complete(BadRequest, metricsInError)
@@ -40,6 +40,7 @@ trait MetricsRoute extends HttpService {
         }
       }
     }
+  }
 }
 
 class MetricsActor extends Actor with MetricsSupport {
@@ -77,14 +78,11 @@ class MetricsActor extends Actor with MetricsSupport {
   private def startWork() {
     import context.dispatcher
 
-    val f = future {
+    Future {
       collectMetrics()
-    }
-    f onSuccess {
-      case metrics => self ! MetricsSuccess(metrics)
-    }
-    f onFailure {
-      case e => self ! MetricsFailure(e)
+    }.onComplete {
+      case Success(metrics) => self ! MetricsSuccess(metrics)
+      case Failure(e) => self ! MetricsFailure(e)
     }
   }
 }
