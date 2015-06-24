@@ -1,11 +1,11 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 plugins {
   id "com.github.hierynomus.license" version "0.11.0"
+  id 'nebula.nebula-release' version '2.2.5'
 }
 apply plugin: "scala"
 
 group 'com.xebialabs.xlplatform.plugin'
-version '1.1-SNAPSHOT'
 
 def xlReleaseHome = project.hasProperty('xlReleaseHome') ? project.xlReleaseHome : System.env.XLRELEASE_HOME
 if (!xlReleaseHome) {
@@ -19,6 +19,13 @@ dependencies {
 
   testCompile "junit:junit:4.11"
   testCompile "org.scalatest:scalatest_2.10:2.2.0"
+}
+
+release {
+  defaultVersionStrategy = nebula.plugin.release.NetflixOssStrategies.SNAPSHOT
+}
+if (!project.hasProperty('release.scope')) {
+  project.ext['release.scope'] = 'patch'
 }
 
 processResources.configure {
