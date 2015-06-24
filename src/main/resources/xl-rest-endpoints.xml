@@ -10,5 +10,5 @@
            xmlns="http://www.xebialabs.com/deployit/endpoints"
            xsi:schemaLocation="http://www.xebialabs.com/deployit/endpoints endpoints.xsd">
 
-    <route route="com.xebialabs.xlplatform.metrics.MetricsRoute.route"/>
+    <route route="com.xebialabs.xlplatform.metrics.MetricsRoute"/>
 </endpoints>
