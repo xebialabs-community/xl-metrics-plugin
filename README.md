@@ -4,16 +4,17 @@ This plugin creates a new endpoint in your XL Release or XL Deploy server which 
 
 ## Requirements
 
-* XL Release 4.6.0 or higher.
-* XL Deploy 5.0.0 or higher.
+* XL Release 4.6.x can be used with [version 1.0.x](https://github.com/xebialabs-community/xl-metrics-plugin/releases/download/v1.0.0/xl-metrics-plugin-1.0.0.jar) of this plugin.
+* XL Release 4.7.x and higher can be used with [version 1.1.x](https://github.com/xebialabs-community/xl-metrics-plugin/releases/download/v1.1.0/xl-metrics-plugin-1.1.0.jar) and higher of this plugin.
+* XL Deploy 5.1.0 or higher can be used with [version 1.1.x](https://github.com/xebialabs-community/xl-metrics-plugin/releases/download/v1.1.0/xl-metrics-plugin-1.1.0.jar) and higher of this plugin.
 
 ## How to install it
 
-* Download the [`xl-metrics-plugin-1.0.jar`](https://github.com/xebialabs-community/xl-metrics-plugin/releases/download/v1.0/xl-metrics-plugin-1.0.jar) file.
+* Download the latest version of the plugin suitable for your XL Release or XL Deploy installation (see above).
 * Copy it into the **plugins/** directory of the XL Release or XL Deploy instance.
 * Restart the instance.
 
-## How to get metrics
+## How to get the metrics
 
 ### Easy way
 
