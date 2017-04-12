@@ -7,7 +7,7 @@ package com.xebialabs.xlplatform.metrics
 
 import javax.annotation.PostConstruct
 
-import com.xebialabs.deployit.repository.{JcrHistoryService, RepositoryService}
+import com.xebialabs.deployit.repository.{HistoryService, RepositoryService}
 import com.xebialabs.xlplatform.repository.XlRepositoryConfig
 import grizzled.slf4j.Logging
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,18 +15,18 @@ import org.springframework.stereotype.Service
 
 @Service
 class ServicesHolder @Autowired()(repositoryService: RepositoryService,
-                                  jcrHistoryService: JcrHistoryService,
+                                  historyService: HistoryService,
                                   xlRepositoryConfig: XlRepositoryConfig) extends Logging {
-  @PostConstruct def initServices() = {
+  @PostConstruct def initServices(): Unit = {
     ServicesHolder.repositoryService = repositoryService
-    ServicesHolder.jcrHistoryService = jcrHistoryService
+    ServicesHolder.historyService = historyService
     ServicesHolder.xlRepositoryConfig = xlRepositoryConfig
     logger.info(s"Initialized xl-metrics for product ${Option(xlRepositoryConfig).map(_.repositoryName).orNull}")
   }
 }
 
 object ServicesHolder {
-  var repositoryService: RepositoryService = null
-  var jcrHistoryService: JcrHistoryService = null
-  var xlRepositoryConfig: XlRepositoryConfig = null
+  var repositoryService: RepositoryService = _
+  var historyService: HistoryService = _
+  var xlRepositoryConfig: XlRepositoryConfig = _
 }

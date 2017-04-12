@@ -13,7 +13,9 @@ class SubTypesResolverTest extends UnitTestSugar {
   describe("SubTypesResolverTest") {
     it("should resolve subtypes when used once") {
       val transformedText = SubTypesResolver.transform("isSubTypeOf[ci:unit.BaseType]")
-      transformedText should be("(ci.[$configuration.item.type] = 'unit.SubType2' OR ci.[$configuration.item.type] = 'unit.SubType1')")
+      transformedText should fullyMatch regex """\(ci\.\[\$configuration\.item\.type\] = 'unit\.SubType\d' OR ci\.\[\$configuration\.item\.type\] = 'unit\.SubType\d'\)"""
+      transformedText should include("unit.SubType1")
+      transformedText should include("unit.SubType2")
     }
     it("should include prefix and suffix") {
       val transformedText = SubTypesResolver.transform("prefix isSubTypeOf[ci:unit.BaseType] suffix")
@@ -22,9 +24,11 @@ class SubTypesResolverTest extends UnitTestSugar {
     }
     it("should resolve subtypes when used several times") {
       val transformedText = SubTypesResolver.transform("isSubTypeOf[ci:unit.BaseType] something isSubTypeOf[test:unit.AnotherBaseType]")
-      transformedText should be(
-        "(ci.[$configuration.item.type] = 'unit.SubType2' OR ci.[$configuration.item.type] = 'unit.SubType1') something " +
-          "(test.[$configuration.item.type] = 'unit.AnotherSubType')")
+      transformedText should fullyMatch regex
+        """\(ci\.\[\$configuration\.item\.type\] = 'unit\.SubType\d' OR ci\.\[\$configuration\.item\.type\] = 'unit\.SubType\d'\) something """ +
+          """\(test\.\[\$configuration\.item\.type\] = 'unit\.AnotherSubType'\)"""
+      transformedText should include("unit.SubType1")
+      transformedText should include("unit.SubType2")
     }
   }
 }

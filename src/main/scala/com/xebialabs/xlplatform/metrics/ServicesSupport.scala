@@ -5,7 +5,9 @@
  */
 package com.xebialabs.xlplatform.metrics
 
+import com.xebialabs.deployit.repository.{HistoryService, RepositoryService}
+
 trait ServicesSupport {
-  def repositoryService = ServicesHolder.repositoryService
-  def jcrHistoryService = ServicesHolder.jcrHistoryService
+  def repositoryService: RepositoryService = ServicesHolder.repositoryService
+  def historyService: HistoryService = ServicesHolder.historyService
 }

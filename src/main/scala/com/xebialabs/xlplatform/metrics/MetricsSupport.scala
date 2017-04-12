@@ -19,7 +19,7 @@ trait MetricsSupport extends ServicesSupport with Logging with MetricsConfig {
 
   case class CisCount(cisCounts: Map[String, Int] = Map(), revisionsCounts: Map[String, Int] = Map())
 
-  def collectMetrics() = {
+  def collectMetrics(): Metrics = {
     
     logger.info("Starting calculation of metrics for this server")
 
@@ -75,7 +75,7 @@ trait MetricsSupport extends ServicesSupport with Logging with MetricsConfig {
   }
 
   private def revisionsCount(ci: ConfigurationItemData): Int =
-    jcrHistoryService.getVersionRevisions(ci.getId).size() - 1
+    historyService.getVersionRevisions(ci.getId).size() - 1
 
   private def merge(map1: Map[String, Int], map2: Map[String, Int]): Map[String, Int] =
     map1 ++ map2.map{ case (k,v) => k -> (v + map1.getOrElse(k,0)) }
