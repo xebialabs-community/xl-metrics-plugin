@@ -9,10 +9,12 @@ import com.typesafe.config.ConfigFactory._
 
 trait MetricsConfig {
   private lazy val productName = ServicesHolder.xlRepositoryConfig.repositoryName
-  private lazy val config = parseResources("xl-metrics.conf").getObject(s"$productName.queries").toConfig
+  private lazy val config = parseResources("xl-metrics.conf")
+  private lazy val queriesConfig = config.getObject(s"$productName.queries").toConfig
+  lazy val countVersions = config.getBoolean(s"$productName.countVersions")
 
   def queries: Map[String, String] = {
     import collection.JavaConversions._
-    config.entrySet().map(x => x.getKey -> x.getValue.unwrapped().toString).toMap
+    queriesConfig.entrySet().map(x => x.getKey -> x.getValue.unwrapped().toString).toMap
   }
 }

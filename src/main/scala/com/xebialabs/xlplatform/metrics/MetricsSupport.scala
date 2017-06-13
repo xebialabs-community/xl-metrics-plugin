@@ -50,9 +50,14 @@ trait MetricsSupport extends ServicesSupport with Logging with MetricsConfig {
 
     val cis = repositoryService.list(parameters)
     val cisCountPerType = cis.groupBy(_.getType.toString).map { case (k, v) => k -> v.length }
-    val revisionsCountPerType = cis.foldLeft(Map.empty[String, Int]) { (acc, ci) =>
-      merge(acc, Map(ci.getType.toString -> revisionsCount(ci)))
-    }
+    val revisionsCountPerType: Map[String, Int] =
+      if (countVersions) {
+        cis.foldLeft(Map.empty[String, Int]) { (acc, ci) =>
+          merge(acc, Map(ci.getType.toString -> revisionsCount(ci)))
+        }
+      } else {
+        Map.empty
+      }
 
     if (cisCountPerType.isEmpty) {
       CisCount()
