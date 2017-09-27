@@ -5,9 +5,9 @@
  */
 package com.xebialabs.xlplatform
 
+import akka.http.scaladsl.server.{AuthorizationFailedRejection, Directive0, Directives}
 import com.xebialabs.deployit.security.permission.PermissionHelper
 import com.xebialabs.xlplatform.endpoints.AuthenticatedData
-import spray.routing.{AuthorizationFailedRejection, Directive0, Directives}
 
 package object metrics extends Directives {
   def rejectNonAdmin(auth: AuthenticatedData): Directive0 = {

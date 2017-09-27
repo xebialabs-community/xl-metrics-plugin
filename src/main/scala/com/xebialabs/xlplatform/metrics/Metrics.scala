@@ -5,6 +5,7 @@
  */
 package com.xebialabs.xlplatform.metrics
 
+import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import spray.json.{DefaultJsonProtocol, JsValue, RootJsonFormat, _}
 
 sealed trait Result
@@ -21,7 +22,7 @@ case class MetricsInProgress(message: String, status: String = "in_progress") ex
 
 case class MetricsInError(message: String, status: String = "failed") extends Result
 
-object MetricsProtocol extends DefaultJsonProtocol {
+trait MetricsProtocol extends SprayJsonSupport with DefaultJsonProtocol {
   implicit val metricsFormat = jsonFormat5(Metrics)
   implicit val metricsStartedFormat = jsonFormat2(MetricsStarted)
   implicit val metricsInProgressFormat = jsonFormat2(MetricsInProgress)
