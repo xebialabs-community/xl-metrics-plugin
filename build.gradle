@@ -2,12 +2,21 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
   id "com.github.hierynomus.license" version "0.14.0"
-  id 'nebula.nebula-release' version '2.2.5'
+  id "com.xebialabs.xl.docker" version "1.1.0"
+  id 'nebula.release' version '6.0.0'
 }
 
 apply plugin: "scala"
-
 group 'com.xebialabs.xlplatform.plugin'
+
+xlDocker {
+  compileImage = 'xebialabs/xlr_dev_compile'
+  compileVersion = 'v7.2.0.2'
+  runImage = 'xebialabs/xlr_dev_run'
+  runVersion = 'v7.2.0.1'
+  runPortMapping = '15516:5516'
+}
+
 
 dependencies {
   compile "org.scala-lang:scala-library:2.12.3"
@@ -21,11 +30,12 @@ dependencies {
   testCompile "org.scalatest:scalatest_2.12:3.0.1"
 }
 
-release {
-  defaultVersionStrategy = nebula.plugin.release.NetflixOssStrategies.SNAPSHOT
-}
 if (!project.hasProperty('release.scope')) {
   project.ext['release.scope'] = 'patch'
+}
+
+if (!project.hasProperty('release.useLastTag')) {
+  project.ext['release.useLastTag'] = true
 }
 
 processResources.configure {
