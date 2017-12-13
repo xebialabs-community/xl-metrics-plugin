@@ -1,42 +1,52 @@
 import org.apache.tools.ant.filters.ReplaceTokens
-plugins {
-  id "com.github.hierynomus.license" version "0.11.0"
-  id 'nebula.nebula-release' version '2.2.5'
-}
-apply plugin: "scala"
 
+plugins {
+  id "com.github.hierynomus.license" version "0.14.0"
+  id "com.xebialabs.xl.docker" version "1.1.0"
+  id 'nebula.release' version '6.0.0'
+}
+
+apply plugin: "scala"
 group 'com.xebialabs.xlplatform.plugin'
 
-def xlReleaseHome = project.hasProperty('xlReleaseHome') ? project.xlReleaseHome : System.env.XLRELEASE_HOME
-if (!xlReleaseHome) {
-  throw new RuntimeException("Please specify location of unpacked XL Release server installation in your " +
-      "gradle.properties or with '-PxlReleaseHome=/path/to/xl/release/server' command line option")
+xlDocker {
+  compileImage = 'xebialabs/xlr_dev_compile'
+  compileVersion = 'v7.2.0.2'
+  runImage = 'xebialabs/xlr_dev_run'
+  runVersion = 'v7.2.0.1'
+  runPortMapping = '15516:5516'
 }
+
 
 dependencies {
   compile "org.scala-lang:scala-library:2.12.3"
-  compile fileTree(dir: "$xlReleaseHome/lib", include: ['*.jar'])
+  compile "com.typesafe.akka:akka-http_2.12:10.0.7"
+  compile "com.typesafe.akka:akka-http-spray-json_2.12:10.0.7"
+  compile "com.xebialabs.xl-platform:xl-security:2017.6.0"
+  compile "com.xebialabs.xl-platform:xl-repository-jcr:2017.6.0"
+  compile "com.xebialabs.xl-platform:xl-endpoints-api:2017.6.0"
 
   testCompile "junit:junit:4.12"
   testCompile "org.scalatest:scalatest_2.12:3.0.1"
 }
 
-release {
-  defaultVersionStrategy = nebula.plugin.release.NetflixOssStrategies.SNAPSHOT
-}
 if (!project.hasProperty('release.scope')) {
   project.ext['release.scope'] = 'patch'
 }
 
+if (!project.hasProperty('release.useLastTag')) {
+  project.ext['release.useLastTag'] = true
+}
+
 processResources.configure {
   filter ReplaceTokens, tokens: [
-      'project.version': version.toString(),
-      'project.name': rootProject.name
+    'project.version': version.toString(),
+    'project.name'   : rootProject.name
   ]
 }
 
 license {
-  header rootProject.file('src/main/license/xebialabs_community.license')
+  header rootProject.file('License.md')
   strictCheck true
   excludes(["**/*.json", "**/*.conf"])
 }
@@ -44,4 +54,8 @@ license {
 repositories {
   mavenLocal()
   mavenCentral()
+  maven {
+    url 'https://dist.xebialabs.com/public/maven2'
+  }
+
 }

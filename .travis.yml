@@ -1,0 +1,15 @@
+language: java
+notifications:
+  hipchat:
+    rooms:
+      secure: piRsdIga9kPUSVT49zzrGS2MTF7D508A0W141eJf0BSbkmJcBzTD9c5+BiBcoZBkx9w3Nj0fqfaPIV1EVo5azykAa7JcMxiRjLoxfkOzn2+YFaJnbIPNFrZPcda9NcZeyaOxMbjs8wCMLy3uIh65XagBVUbiIOGNnt4wxFkrTRY=
+deploy:
+  provider: releases
+  api_key:
+    secure: TxwMBcY+RFwfWGNyDTS6YjQUwYp2kZqrlCdNwZOpbTk2MM+8CadTwk2nEkGuXWQ4jCBBl7wPwQxbFN9p46JCkhTO9qH/fBWRnpztVfM+W0Ge4I7dzcmEyfl/NP36oHUQLXC29ebKqEqIJPpgaZTtte+Yghbamc8v1tQYr3PVknI=
+  file_glob: true
+  file: build/libs/*
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: xebialabs-community/xl-metrics-plugin
