@@ -1,5 +1,23 @@
 # XL Metrics plugin
 
+[![Build Status][xl-metrics-plugin-travis-image]][xl-metrics-plugin-travis-url]
+[![Codacy Badge][xl-metrics-plugin-codacy-image] ][xl-metrics-plugin-codacy-url]
+[![Code Climate][xl-metrics-plugin-code-climate-image] ][xl-metrics-plugin-code-climate-url]
+[![License: MIT][xl-metrics-plugin-license-image] ][xl-metrics-plugin-license-url]
+[![Github All Releases][xl-metrics-plugin-downloads-image] ]()
+
+[xl-metrics-plugin-travis-image]: https://travis-ci.org/xebialabs-community/xl-metrics-plugin.svg?branch=master
+[xl-metrics-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xl-metrics-plugin
+[xl-metrics-plugin-codacy-image]: https://api.codacy.com/project/badge/Grade/36153ed9460a44d289aa1186cde51fa1
+[xl-metrics-plugin-codacy-url]: https://www.codacy.com/app/joris-dewinne/xl-metrics-plugin
+[xl-metrics-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xl-metrics-plugin/badges/gpa.svg
+[xl-metrics-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xl-metrics-plugin
+[xl-metrics-plugin-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
+[xl-metrics-plugin-license-url]: https://opensource.org/licenses/MIT
+[xl-metrics-plugin-downloads-image]: https://img.shields.io/github/downloads/xebialabs-community/xl-metrics-plugin/total.svg
+
+
+
 This plugin creates a new endpoint in your XL Release or XL Deploy server which allows you to gather several metrics about your XL* instance. In particular it gives you some insight into the size of the repository, by counting numbers of configuration items per type.
 
 ## Requirements
