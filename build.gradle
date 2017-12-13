@@ -12,6 +12,7 @@ group 'com.xebialabs.xlplatform.plugin'
 dependencies {
   compile "org.scala-lang:scala-library:2.12.3"
   compile "com.typesafe.akka:akka-http_2.12:10.0.7"
+  compile "com.typesafe.akka:akka-http-spray-json_2.12:10.0.7"
   compile "com.xebialabs.xl-platform:xl-security:2017.6.0"
   compile "com.xebialabs.xl-platform:xl-repository-jcr:2017.6.0"
   compile "com.xebialabs.xl-platform:xl-endpoints-api:2017.6.0"
