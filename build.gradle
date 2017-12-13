@@ -1,21 +1,16 @@
 import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
-  id "com.github.hierynomus.license" version "0.11.0"
+  id "com.github.hierynomus.license" version "0.14.0"
   id 'nebula.nebula-release' version '2.2.5'
 }
+
 apply plugin: "scala"
 
 group 'com.xebialabs.xlplatform.plugin'
 
-def xlReleaseHome = project.hasProperty('xlReleaseHome') ? project.xlReleaseHome : System.env.XLRELEASE_HOME
-if (!xlReleaseHome) {
-  throw new RuntimeException("Please specify location of unpacked XL Release server installation in your " +
-      "gradle.properties or with '-PxlReleaseHome=/path/to/xl/release/server' command line option")
-}
-
 dependencies {
   compile "org.scala-lang:scala-library:2.10.4"
-  compile fileTree(dir: "$xlReleaseHome/lib", include: ['*.jar'])
 
   testCompile "junit:junit:4.11"
   testCompile "org.scalatest:scalatest_2.10:2.2.0"
@@ -30,8 +25,8 @@ if (!project.hasProperty('release.scope')) {
 
 processResources.configure {
   filter ReplaceTokens, tokens: [
-      'project.version': version.toString(),
-      'project.name': rootProject.name
+    'project.version': version.toString(),
+    'project.name'   : rootProject.name
   ]
 }
 
