@@ -12,6 +12,7 @@ group 'com.xebialabs.xlplatform.plugin'
 dependencies {
   compile "org.scala-lang:scala-library:2.12.3"
   compile "com.typesafe.akka:akka-http_2.12:10.0.7"
+  compile "com.xebialabs.xl-platform:xl-security:2017.6.0"
 
   testCompile "junit:junit:4.12"
   testCompile "org.scalatest:scalatest_2.12:3.0.1"
@@ -40,4 +41,8 @@ license {
 repositories {
   mavenLocal()
   mavenCentral()
+  maven {
+    url 'https://dist.xebialabs.com/public/maven2'
+  }
+
 }
