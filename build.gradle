@@ -10,10 +10,10 @@ apply plugin: "scala"
 group 'com.xebialabs.xlplatform.plugin'
 
 dependencies {
-  compile "org.scala-lang:scala-library:2.10.4"
+  compile "org.scala-lang:scala-library:2.12.3"
 
-  testCompile "junit:junit:4.11"
-  testCompile "org.scalatest:scalatest_2.10:2.2.0"
+  testCompile "junit:junit:4.12"
+  testCompile "org.scalatest:scalatest_2.12:3.0.1"
 }
 
 release {
