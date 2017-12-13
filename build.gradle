@@ -11,7 +11,8 @@ group 'com.xebialabs.xlplatform.plugin'
 
 dependencies {
   compile "org.scala-lang:scala-library:2.12.3"
-
+  compile "com.typesafe.akka:akka-http_2.12:10.0.7.jar"
+  
   testCompile "junit:junit:4.12"
   testCompile "org.scalatest:scalatest_2.12:3.0.1"
 }
