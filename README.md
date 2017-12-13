@@ -10,8 +10,8 @@
 [xl-metrics-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xl-metrics-plugin
 [xl-metrics-plugin-codacy-image]: https://api.codacy.com/project/badge/Grade/b7d65bbe454c4d99833f98119ae535be
 [xl-metrics-plugin-codacy-url]: https://www.codacy.com/app/joris-dewinne/xl-metrics-plugin
-[xl-metrics-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xl-metrics-plugin/badges/gpa.svg
-[xl-metrics-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xl-metrics-plugin
+[xl-metrics-plugin-code-climate-image]: https://api.codeclimate.com/v1/badges/cc49dfda1da2c07f4c8f/maintainability
+[xl-metrics-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xl-metrics-plugin/maintainability
 [xl-metrics-plugin-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
 [xl-metrics-plugin-license-url]: https://opensource.org/licenses/MIT
 [xl-metrics-plugin-downloads-image]: https://img.shields.io/github/downloads/xebialabs-community/xl-metrics-plugin/total.svg
