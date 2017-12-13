@@ -14,7 +14,7 @@ dependencies {
   compile "com.typesafe.akka:akka-http_2.12:10.0.7"
   compile "com.xebialabs.xl-platform:xl-security:2017.6.0"
   compile "com.xebialabs.xl-platform:xl-repository-jcr:2017.6.0"
-  compile "com.xebialabs.xl-platform:xl-endoints-api:2017.6.0"
+  compile "com.xebialabs.xl-platform:xl-endpoints-api:2017.6.0"
 
   testCompile "junit:junit:4.12"
   testCompile "org.scalatest:scalatest_2.12:3.0.1"
