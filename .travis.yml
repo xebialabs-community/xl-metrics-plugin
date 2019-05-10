@@ -6,7 +6,7 @@ notifications:
 deploy:
   provider: releases
   api_key:
-    secure: TxwMBcY+RFwfWGNyDTS6YjQUwYp2kZqrlCdNwZOpbTk2MM+8CadTwk2nEkGuXWQ4jCBBl7wPwQxbFN9p46JCkhTO9qH/fBWRnpztVfM+W0Ge4I7dzcmEyfl/NP36oHUQLXC29ebKqEqIJPpgaZTtte+Yghbamc8v1tQYr3PVknI=
+    secure: sS7rV82K7MLIBF2mhwF0rMDJD/dEnqXLBVfkkA0U980TJ6ZGdaGRW4ESRNLoUcHCPtX6Vt/QStoohWPw99O1e8MA+qiZxmQK73PlLJCgAwI/HpFAR2KqU7BuB1o9Nhgr2ZCVf3PzjPoCXi8wVahEuSoKmm4vnDl32tpj9vgLMeY=
   file_glob: true
   file: build/libs/*
   skip_cleanup: true
